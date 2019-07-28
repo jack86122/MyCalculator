@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Calculator</title>
+    <style>
+        button {
+            background-color: aqua;
+            border: solid 2px red;
+            height: 100px;
+            width: 100px;
+            font-size: 40px;
+        }
+        #height1{
+            height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p><a href="https://www.desmos.com/scientific" target="_blank">參考網路上面的計算機</a></p>
+
+    <p id="result"></p>
+    <hr>
+    <p id="height1"><button onclick="numClick('1')">1</button>
+        <button onclick="numClick('2')">2</button>
+        <button onclick="numClick('3')">3</button>
+        <button onclick="operatorClick('+')">+</button></p><br>
+    <p id="height1"> <button onclick="numClick('4')">4</button>
+        <button onclick="numClick('5')">5</button>
+        <button onclick="numClick('6')">6</button>
+        <button onclick="operatorClick('-')">-</button></p><br>
+    <p id="height1"> <button onclick="numClick('7')">7</button>
+        <button onclick="numClick('8')">8</button>
+        <button onclick="numClick('9')">9</button>
+        <button onclick="operatorClick('*')">*</button></p><br>
+    <p id="height1"> <button onclick="numClick('0')">0</button>　　　　　　　　　　　　　
+        <button onclick="operatorClick('/')">/</button></p><br>
+
+
+        <p id="height1"><button onclick="answer()">=</button></p>
+    <script>
+        var tempNum = -1;
+        var op; // 紀錄按下去的四則運算符號是什麼
+
+        // 數值類型
+        function numClick(num) {
+            document.getElementById('result').innerHTML =
+                document.getElementById('result').innerHTML + num;
+        }
+
+        // 符號類型
+        function operatorClick(str) {
+
+            if (tempNum == -1) {
+                // 目前的數值記錄下來
+                tempNum = document.getElementById('result').innerHTML;
+            } else {
+                // 運算
+                count();
+            }
+            // 紀錄符號
+            op = str;
+
+            // 清空畫面
+            document.getElementById('result').innerHTML = "";
+
+            console.log(op);
+            console.log(tempNum);
+        }
+
+        function count() {
+            switch (op) {
+                case '+':
+                    tempNum = parseInt(parseInt(tempNum) + parseInt(document.getElementById('result').innerHTML));
+                case '-':
+                    tempNum = parseInt(tempNum) - parseInt(document.getElementById('result').innerHTML);
+                case '/':
+                    tempNum = parseInt(tempNum) / parseInt(document.getElementById('result').innerHTML);
+                case '*':
+                    tempNum = parseInt(tempNum) * parseInt(document.getElementById('result').innerHTML);
+            }
+        }
+
+        // 答案
+        function answer() {
+            // 運算
+            switch (op) {
+                case '+':
+                    tempNum = parseInt(parseInt(tempNum) + parseInt(document.getElementById('result').innerHTML));
+                case '-':
+                    tempNum = parseInt(tempNum) - parseInt(document.getElementById('result').innerHTML);
+                case '/':
+                    tempNum = parseInt(tempNum) / parseInt(document.getElementById('result').innerHTML);
+                case '*':
+                    tempNum = parseInt(tempNum) * parseInt(document.getElementById('result').innerHTML);
+            }
+            document.getElementById('result').innerHTML = tempNum;
+        }
+    </script>
+
+
+
+</body>
+
+</html>
